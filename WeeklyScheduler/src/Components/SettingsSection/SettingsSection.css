@@ -1,0 +1,12 @@
+
+.SettingsButton{
+  background-color: #646cff;
+  position: absolute;
+  left: 0;
+  bottom: 1vh;
+}
+
+.SettingsButton img{
+  width: 2vw;
+  object-fit: cover;
+}

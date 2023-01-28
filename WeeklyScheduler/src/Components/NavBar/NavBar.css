@@ -1,0 +1,23 @@
+.NavBar a{
+  margin: 4vh;
+}
+
+.NavBar{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 10vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;  
+}
+
+.NavBar .LogOutButton{
+  position: absolute;
+  right: 0px;
+  background-color: #646cff;
+  text-align: center;
+  text-justify: center;
+  
+}
