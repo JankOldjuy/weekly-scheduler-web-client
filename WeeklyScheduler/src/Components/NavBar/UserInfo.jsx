@@ -10,7 +10,7 @@ export default function UserInfo(){
    
 
   return <div>
-
+    User info
   </div>
 }
 
@@ -22,16 +22,12 @@ function useFetch({auth, setAuth}){
 
   useEffect(() => {
 
-    console.log("use effect on play")
     if(auth !== undefined){
       return;
     }
       
     const cookies = new Cookies()
-    console.log('Cookie name: ', import.meta.env.VITE_AUTH_COOKIE_NAME)
-    console.log("cookie: ", cookies.get(import.meta.env.VITE_AUTH_COOKIE_NAME))
-
-
+    
 
     if(cookies.get(import.meta.env.VITE_AUTH_COOKIE_NAME) !== undefined){
       
@@ -49,7 +45,7 @@ function useFetch({auth, setAuth}){
 
     else{
       
-      axios.post("//localhost:8080/auth/login",{
+      /* axios.post("//localhost:8080/auth/login",{
         userName: "ceq",
         password: "ceq"
       })
@@ -61,15 +57,15 @@ function useFetch({auth, setAuth}){
         })
         setAuth({authenticated: true})
       })
-      .catch(e => {console.log(e)})
+      .catch(e => {console.log(e)}) */
 
 
       
     }
   
     
-    return () => {
-      cookies.remove(import.meta.env.VITE_AUTH_COOKIE_NAME)
+    return () => {/* 
+      cookies.remove(import.meta.env.VITE_AUTH_COOKIE_NAME) */
     }
   }, [])
 }

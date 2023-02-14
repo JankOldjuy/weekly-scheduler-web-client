@@ -1,9 +1,18 @@
 import {AuthContext} from "../Contexts"
 import {useContext, useEffect} from 'react'
+import {useNavigate} from 'react-router-dom'
 
 export default function LoginPage(){
 
   const auth = useContext(AuthContext)
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if(auth.auth !== undefined){
+      navigate('/home')
+    }
+  })
+
 
   return <>
       <div>

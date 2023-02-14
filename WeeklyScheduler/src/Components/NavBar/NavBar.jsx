@@ -4,6 +4,7 @@ import './NavBar.css'
 import {useContext} from 'react'
 import UserInfo from './UserInfo'
 import {AuthContext} from '../Contexts'
+import { AUTH_COOKIE } from '../../Constants'
 
 export default function NavBar(){
 
@@ -16,7 +17,7 @@ export default function NavBar(){
            {auth.auth !== undefined ? <Link to = 'weekPlan'> My Plan </Link> : <Link to = 'login'> Login </Link>}
            <UserInfo/>
            
-            { (auth.auth !== undefined) && <button
+           { (auth.auth !== undefined) && <button
             className = 'LogOutButton'
             onClick = {() => handleLogOut(auth)}
            > Log Out </button>}
@@ -29,5 +30,5 @@ export default function NavBar(){
    function handleLogOut({setAuth}){
       setAuth(undefined)
       const cookies = new Cookies()
-      cookies.remove(import.meta.env.VITE_AUTH_COOKIE_NAME)
+      cookies.remove(AUTH_COOKIE)
    }

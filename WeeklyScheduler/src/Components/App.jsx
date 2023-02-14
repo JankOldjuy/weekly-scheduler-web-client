@@ -2,6 +2,7 @@ import {Route, Routes, Navigate, BrowserRouter as Router} from 'react-router-dom
 import './App.css'
 import LoginPage from './LoginPage/LoginPage'
 import NavBar from './NavBar/NavBar'
+import Home from './Home/Home'
 import {AuthContext} from './Contexts'
 import {useState} from 'react'
 import WeekPlan from './WeekPlan/WeekPlan'
@@ -22,7 +23,7 @@ function App() {
         
         <Routes>
           <Route path = '/weekPlan' element ={<WeekPlan/>}/>
-          <Route path = '/home' element = {<div> Home </div>}/>
+          <Route path = '/home' element = {<Home/>}/>
           <Route path = '/login' element = {<LoginPage/>}/>
           <Route path = '/*' element = {<Navigate to = "/home"/>}/>
         </Routes>

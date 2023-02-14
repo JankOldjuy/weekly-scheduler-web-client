@@ -1,29 +1,19 @@
 import {useState, useEffect} from 'react'
 import {useNavigate} from 'react-router-dom'
+import { api } from '../../ApiProvider'
 
 
 
 export default function WeekPlan(){
 
-  const [loaded, setLoaded] = useState(false)
-  const userId = 187
   const [events, setEvents] = useState()
-  const [days, setDays] = useState()
+  const [changed, setChanged] = useState(false)
 
-  useEffect(() => {/* 
-    fetch(`http://localhost:5000/user_${userId}`)
-      .then(res => res.json())
-        .then(data => {
-          setEvents(data)
-          setLoaded(true)}) */
-  },[])
-
+  
+  const weeklyPlan = useWeeklyPlan()
 
   return <div> 
     <div className = "WeekGrid"> 
-      
-      {}
-      
       <WeekDay weekDay = 'monday' events = {events !== undefined? events['Monday']['events']: undefined } />
       <div>Tuesday </div>
       <div>Wednesday </div>
@@ -35,6 +25,33 @@ export default function WeekPlan(){
     </div>
 
 
+}
+
+
+function useWeeklyPlan(){
+
+  const plan = {planEvent: 'alldayFree'}
+
+  useEffect(() => {
+
+   console.log('all free')
+
+
+   api.get('/users')
+   .then(res => res.data)
+   .then(users =>users.find(user => user['userName'] === 'ceq'))
+   .then(user => user['userSchedule'])
+   .then(schedule => schedule['Monday'])
+   .then(day => day['events'].forEach(event => {
+    let date = new Date(event['Time'])
+    console.table(date.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric'}))
+  }))
+
+
+  },[])
+
+
+  return plan
 }
 
 
@@ -50,9 +67,7 @@ function WeekDay({events, weekDay}){
     }
     
   },[])
-
-  {/* <span onClick = {() => {setAdding(true)}}>+</span>
-   */}    
+    
 
   return <div>
     {weekDay}
@@ -61,3 +76,13 @@ function WeekDay({events, weekDay}){
     </ol>
   </div>
 }
+
+  function Event({description, date}){
+
+
+    return <div className = 'Event'> 
+        {description}
+        <br/>
+        {date.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric'})}
+    </div>
+  }
